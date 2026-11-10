@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon ePortfolio SIO | Eliandre bibilas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+--bg: #0a0b14;
+--card: #141624;
+--card-hover: #1a1c2e;
+--accent: #ff2e63;
+--accent2: #08d9d6;
+--text: #f0f0f5;
+--muted: #9ba0b4;
+--border: rgba(255,255,255,0.06);
+--gradient: linear-gradient(135deg, #ff2e63, #08d9d6);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: 'Outfit', sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.65;
+overflow-x: hidden;
+}
+
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+background:
+radial-gradient(circle at 15% 20%, rgba(255,46,99,0.1) 0%, transparent 45%),
+radial-gradient(circle at 85% 75%, rgba(8,217,214,0.08) 0%, transparent 45%);
+z-index: -1;
+pointer-events: none;
+}
+
+.container {
+max-width: 1080px;
+margin: 0 auto;
+padding: 0 22px;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 22px 0;
+position: sticky;
+top: 0;
+background: rgba(10,11,20,0.88);
+backdrop-filter: blur(14px);
+z-index: 100;
+border-bottom: 1px solid var(--border);
+}
+
+.logo {
+font-weight: 700;
+font-size: 1.35rem;
+background: var(--gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+display: flex;
+gap: 28px;
+list-style: none;
+}
+
+.nav-links a {
+color: var(--muted);
+text-decoration: none;
+font-weight: 500;
+font-size: 0.92rem;
+transition: color 0.25s;
+}
+
+.nav-links a:hover { color: var(--accent2); }
+
+
+.hero {
+padding: 90px 0 70px;
+display: grid;
+grid-template-columns: 1.25fr 1fr;
+gap: 50px;
+align-items: center;
+}
+
+.hero h1 {
+font-size: 3.1rem;
+line-height: 1.12;
+margin-bottom: 14px;
+font-weight: 700;
+}
+
+.hero h1 span {
+background: var(--gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.tagline {
+font-size: 1.2rem;
+color: var(--muted);
+margin-bottom: 22px;
+font-weight: 400;
+}
+
+.hero p {
+color: var(--muted);
+margin-bottom: 32px;
+max-width: 460px;
+}
+
+.btn {
+display: inline-block;
+padding: 13px 30px;
+background: var(--gradient);
+color: white;
+text-decoration: none;
+border-radius: 50px;
+font-weight: 600;
+font-size: 0.95rem;
+transition: transform 0.25s, box-shadow 0.25s;
+box-shadow: 0 8px 24px rgba(255,46,99,0.28);
+}
+
+.btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 28px rgba(255,46,99,0.4);
+}
+
+.hero-visual {
+position: relative;
+height: 340px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.avatar-circle {
+width: 260px;
+height: 260px;
+border-radius: 50%;
+background: var(--gradient);
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+animation: float 6s ease-in-out infinite;
+}
+
+.avatar-circle::before {
+content: '';
+position: absolute;
+inset: 7px;
+border-radius: 50%;
+background: var(--bg);
+}
+
+.avatar-emoji {
+font-size: 6.5rem;
+z-index: 2;
+position: relative;
+}
+
+.badge {
+position: absolute;
+background: var(--card);
+border: 1px solid var(--border);
+padding: 9px 16px;
+border-radius: 40px;
+font-size: 0.88rem;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 7px;
+box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+}
+
+.badge.anime { top: 25px; right: 5px; }
+.badge.sport { bottom: 35px; left: -5px; }
+
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-16px); }
+}
+
+
+section { padding: 75px 0; }
+
+.section-title {
+font-size: 1.9rem;
+margin-bottom: 10px;
+font-weight: 700;
+}
+
+.section-title span { color: var(--accent); }
+
+.section-subtitle {
+color: var(--muted);
+margin-bottom: 42px;
+max-width: 520px;
+}
+
+.about-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 24px;
+}
+
+.about-card {
+background: var(--card);
+border-radius: 18px;
+padding: 28px;
+border: 1px solid var(--border);
+transition: transform 0.3s, background 0.3s;
+}
+
+.about-card:hover {
+transform: translateY(-5px);
+background: var(--card-hover);
+}
+
+.about-card h3 {
+font-size: 1.2rem;
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.about-card p { color: var(--muted); font-size: 0.96rem; }
+
+/* EXPERIENCES */
+.exp-list {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.exp-card {
+background: var(--card);
+border-radius: 18px;
+padding: 28px 30px;
+border: 1px solid var(--border);
+display: grid;
+grid-template-columns: auto 1fr;
+gap: 22px;
+transition: all 0.3s;
+}
+
+.exp-card:hover {
+border-color: rgba(255,46,99,0.25);
+transform: translateX(6px);
+}
+
+.exp-icon {
+width: 56px;
+height: 56px;
+border-radius: 14px;
+background: rgba(255,255,255,0.05);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.7rem;
+}
+
+.exp-content h3 {
+font-size: 1.2rem;
+margin-bottom: 4px;
+}
+
+.exp-meta {
+font-size: 0.88rem;
+color: var(--accent2);
+margin-bottom: 10px;
+font-weight: 500;
+}
+
+.exp-content p {
+color: var(--muted);
+font-size: 0.95rem;
+}
+
+.exp-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 7px;
+margin-top: 12px;
+}
+
+.tag {
+background: rgba(255,255,255,0.06);
+padding: 5px 12px;
+border-radius: 30px;
+font-size: 0.8rem;
+color: var(--muted);
+}
+
+
+.passions {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 24px;
+}
+
+.passion-card {
+background: var(--card);
+border-radius: 20px;
+padding: 34px 28px;
+border: 1px solid var(--border);
+transition: all 0.3s;
+}
+
+.passion-card:hover {
+transform: translateY(-5px);
+}
+
+.passion-card.anime:hover { box-shadow: 0 14px 36px rgba(255,46,99,0.12); }
+.passion-card.sport:hover { box-shadow: 0 14px 36px rgba(8,217,214,0.12); }
+
+.passion-icon { font-size: 2.5rem; margin-bottom: 16px; }
+
+.passion-card h3 {
+font-size: 1.35rem;
+margin-bottom: 10px;
+}
+
+.passion-card p {
+color: var(--muted);
+margin-bottom: 16px;
+font-size: 0.95rem;
+}
+
+.skills-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+gap: 16px;
+}
+
+.skill {
+background: var(--card);
+border-radius: 14px;
+padding: 20px;
+border: 1px solid var(--border);
+display: flex;
+align-items: center;
+gap: 14px;
+transition: transform 0.25s;
+}
+
+.skill:hover { transform: translateY(-3px); }
+
+.skill-icon {
+font-size: 1.6rem;
+width: 46px;
+height: 46px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: rgba(255,255,255,0.05);
+border-radius: 11px;
+}
+
+.skill h4 { font-size: 1rem; margin-bottom: 2px; }
+.skill span { font-size: 0.82rem; color: var(--muted); }
+
+
+.contact-box {
+background: var(--card);
+border-radius: 22px;
+padding: 48px 40px;
+text-align: center;
+border: 1px solid var(--border);
+}
+
+.contact-box h2 {
+font-size: 1.85rem;
+margin-bottom: 14px;
+}
+
+.contact-box p {
+color: var(--muted);
+margin-bottom: 28px;
+max-width: 420px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.socials {
+display: flex;
+justify-content: center;
+gap: 14px;
+margin-top: 26px;
+}
+
+.social {
+width: 46px;
+height: 46px;
+border-radius: 50%;
+background: rgba(255,255,255,0.06);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.25rem;
+text-decoration: none;
+transition: all 0.3s;
+}
+
+.social:hover {
+background: var(--gradient);
+transform: translateY(-4px);
+}
+
+footer {
+text-align: center;
+padding: 36px 0;
+color: var(--muted);
+font-size: 0.88rem;
+border-top: 1px solid var(--border);
+}
+
+
+@media (max-width: 850px) {
+.hero {
+grid-template-columns: 1fr;
+text-align: center;
+padding-top: 50px;
+}
+.hero p { margin-left: auto; margin-right: auto; }
+.hero-visual { height: 280px; }
+.avatar-circle { width: 210px; height: 210px; }
+.avatar-emoji { font-size: 5.2rem; }
+.about-grid, .passions { grid-template-columns: 1fr; }
+.nav-links { display: none; }
+.hero h1 { font-size: 2.4rem; }
+.exp-card { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="container">
+<div class="logo">Maxime.M</div>
+<ul class="nav-links">
+<li><a href="#about">À propos</a></li>
+<li><a href="#experiences">Expériences</a></li>
+<li><a href="#passions">Passions</a></li>
+<li><a href="#competences">Compétences</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<
+<section class="hero container">
+<div>
+<h1>Salut, moi c’est <span>Maxime</span></h1>
+<p class="tagline">Étudiant • Passionné d’anime • Sportif</p>
+<p>
+Je construis mon ePortfolio pour valoriser mon parcours,
+mes expériences de stages et les compétences que j’ai développées.
+Anime et sport me poussent chaque jour à progresser.
+</p>
+<a href="#contact" class="btn">Me contacter</a>
+</div>
+
+<div class="hero-visual">
+<div class="avatar-circle">
+<div class="avatar-emoji"></div>
+</div>
+<div class="badge anime"> Otaku</div>
+<div class="badge sport"> Sportif</div>
+</div>
+</section>
+
+<section id="about" class="container">
+<h2 class="section-title">À propos de <span>moi</span></h2>
+<p class="section-subtitle">
+Comme le recommande la démarche ePortfolio : partir de ce que j’ai fait pour mieux montrer ce que je sais faire.
+</p>
+
+<div class="about-grid">
+<div class="about-card">
+<h3> Mon objectif</h3>
+<p>
+Développer mon employabilité en rendant visibles mes expériences,
+mes compétences et ma personnalité. Mon ePortfolio me sert d’outil
+de présentation et de réflexion sur mon parcours.
+</p>
+</div>
+<div class="about-card">
+<h3> Mon approche</h3>
+<p>
+Je m’appuie sur mes stages et mes passions pour identifier
+concrètement ce que je sais faire. Discipline, esprit d’équipe
+et envie d’apprendre sont au cœur de ma façon de travailler.
+</p>
+</div>
+</div>
+</section>
+
+
+<section id="experiences" class="container">
+<h2 class="section-title">Mes <span>expériences</span></h2>
+<p class="section-subtitle">
+Stages et expériences terrain qui m’ont permis de développer des compétences concrètes.
+</p>
+
+<div class="exp-list">
+
+<div class="exp-card">
+<div class="exp-icon"></div>
+<div class="exp-content">
+<h3>Stage chez Feu Vert</h3>
+<div class="exp-meta">Centre auto • Service client & atelier</div>
+<p>
+Accueil des clients, conseil sur les produits et services,
+participation aux opérations de maintenance légère et organisation
+de l’espace de vente. J’ai appris à travailler dans un environnement
+dynamique avec des objectifs commerciaux et un fort sens du service.
+</p>
+<div class="exp-tags">
+<span class="tag">Relation client</span>
+<span class="tag">Conseil</span>
+<span class="tag">Organisation</span>
+<span class="tag">Esprit d’équipe</span>
+</div>
+</div>
+</div>
+
+<div class="exp-card">
+<div class="exp-icon"></div>
+<div class="exp-content">
+<h3>Stage à Télé Gare Champigny</h3>
+<div class="exp-meta">Boutique téléphonie • Gare de Champigny</div>
+<p>
+Vente et conseil en electromenagé, connection internet, probleme apareils electronique, gestion des stocks,
+prise en charge des réparations simples et accompagnement des clients
+dans le choix de leurs forfaits et accessoires. Un stage très formateur
+sur la relation client et la polyvalence.
+</p>
+<div class="exp-tags">
+<span class="tag">Vente</span>
+<span class="tag">Conseil technique</span>
+<span class="tag">Gestion de stock</span>
+<span class="tag">Polyvalence</span>
+</div>
+</div>
+</div>
+
+<div class="exp-card">
+<div class="exp-icon"></div>
+<div class="exp-content">
+<h3>Stage chez Pergny Garden</h3>
+<div class="exp-meta">Boutique de fleurs • Commerce de proximité</div>
+<p>
+Accueil de la clientèle, confection de bouquets, entretien des plantes,
+mise en valeur des produits et gestion de la caisse. Un stage qui m’a
+appris la créativité, le sens du détail et le contact humain dans un
+commerce de proximité.
+</p>
+<div class="exp-tags">
+<span class="tag">Créativité</span>
+<span class="tag">Service client</span>
+<span class="tag">Soin du détail</span>
+<span class="tag">Commerce</span>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="passions" class="container">
+<h2 class="section-title">Mes <span>passions</span></h2>
+<p class="section-subtitle">Deux univers qui me définissent et nourrissent mon énergie au quotidien.</p>
+
+<div class="passions">
+<div class="passion-card anime">
+<div class="passion-icon"></div>
+<h3>Anime & Manga</h3>
+<p>
+De One Piece à Jujutsu Kaisen, Narto , l’anime fait partie de mon quotidien.
+J’y trouve de l’inspiration, des valeurs de dépassement de soi et
+une source de créativité. C’est aussi un excellent moyen de décompresser
+tout en gardant l’esprit stimulé.
+</p>
+<div class="exp-tags">
+<span class="tag">Shonen</span>
+<span class="tag">Personnages</span>
+<span class="tag">OST</span>
+<span class="tag">Univers</span>
+</div>
+</div>
+
+<div class="passion-card sport">
+<div class="passion-icon"></div>
+<h3>Sport & Compétition</h3>
+<p>
+Basket, MMA, musculation,running et dormir . Le sport m’apprend la discipline,
+la résilience et le travail d’équipe. Chaque entraînement est une
+occasion de progresser.
+</p>
+<div class="exp-tags">
+<span class="tag">Basket</span>
+<span class="tag">Musculation</span>
+<span class="tag">Running</span>
+<span class="tag">Mental</span>
+</div>
+</div>
+</div>
+</section>
+
+
+<section id="competences" class="container">
+<h2 class="section-title">Mes <span>compétences</span></h2>
+<p class="section-subtitle">
+Compétences identifiées à partir de mes stages et de mes activités.
+</p>
+
+<div class="skills-grid">
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Relation client</h4>
+<span>Accueil, écoute, conseil</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Esprit d’équipe</h4>
+<span>Collaboration & entraide</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Organisation</h4>
+<span>Priorités & efficacité</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Créativité</h4>
+<span>Idées & présentation</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Polyvalence</h4>
+<span>S’adapter rapidement</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Motivation</h4>
+<span>Envie de progresser</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Gestion de stock</h4>
+<span>Suivi & rangement</span>
+</div>
+</div>
+<div class="skill">
+<div class="skill-icon"></div>
+<div>
+<h4>Résilience</h4>
+<span>Tenir dans la durée</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="container">
+<div class="contact-box">
+<h2>Envie d’échanger ?</h2>
+<p>
+Que ce soit pour une opportunité, un projet ou simplement discuter
+d’anime et de sport, je suis ouvert aux échanges.
+</p>
+<a href="mailto:maxime.moreau@email.com" class="btn">M’écrire</a>
+
+<div class="socials">
+<a href="#" class="social" title="Instagram"></a>
+<a href="#" class="social" title="LinkedIn"></a>
+<a href="#" class="social" title="Twitter / X"></a>
+<a href="#" class="social" title="Discord"></a>
+</div>
+</div>
+</section>
+
+<footer 
+<p>Fait part eliandre bibila </p>
+</footer>
+
+</body>
+</html>
